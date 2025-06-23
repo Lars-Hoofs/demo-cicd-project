@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const logger = require('./utils/logger');
 const userRoutes = require('./routes/users');
 const healthRoutes = require('./routes/health');
+const calculatorRoutes = require('./routes/calculator');
 
 // Laad omgevingsvariabelen
 dotenv.config();
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/health', healthRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/calculator', calculatorRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {

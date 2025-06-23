@@ -1,7 +1,7 @@
 {
   "name": "demo-cicd-project",
-  "version": "1.0.0",
-  "description": "Demo project voor CI/CD pipeline met automatisch testen, linting en deployment",
+  "version": "1.1.0",
+  "description": "Demo project voor CI/CD pipeline met automatisch testen, linting en deployment - Nu met Calculator API",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",

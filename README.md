@@ -239,6 +239,12 @@ Alle gevoelige configuratie via omgevingsvariabelen:
 - `PUT /api/users/:id` - Update gebruiker
 - `DELETE /api/users/:id` - Verwijder gebruiker
 
+#### Calculator API (NEW!)
+- `POST /api/calculator/add` - Optellen van twee getallen
+- `POST /api/calculator/subtract` - Aftrekken van twee getallen
+- `POST /api/calculator/multiply` - Vermenigvuldigen van twee getallen
+- `POST /api/calculator/divide` - Delen van twee getallen
+
 ### Response Formats
 ```json
 {
