@@ -8,8 +8,9 @@ on:
 
 env:
   NODE_VERSION: '18.x'
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  # Gewijzigd voor Docker Hub
+  REGISTRY: docker.io
+  IMAGE_NAME: your-dockerhub-username/your-app-name  # Vervang met jouw gegevens
 
 jobs:
   # Job 1: Linting en statische analyse
@@ -131,7 +132,7 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-  # Job 5: Docker build
+  # Job 5: Docker build en push naar Docker Hub
   docker:
     name: Build Docker Image
     runs-on: ubuntu-latest
@@ -145,18 +146,18 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Log in to Container Registry
+    # Gewijzigd voor Docker Hub login
+    - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        images: ${{ env.IMAGE_NAME }}
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -215,6 +216,7 @@ jobs:
         echo "Deploying to production environment..."
         echo "Using artifacts from: ./artifacts"
         # Deployment logica hier
+        # docker run ${{ env.IMAGE_NAME }}:latest
         
     - name: Run health checks
       run: |
